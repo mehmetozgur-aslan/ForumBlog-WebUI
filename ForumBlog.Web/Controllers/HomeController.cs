@@ -20,5 +20,10 @@ namespace ForumBlog.Web.Controllers
         {
             return View(await _blogApiService.GetAllAsync());
         }
+
+        public async Task<IActionResult> BlogDetail(int id)
+        {
+            return View(await _blogApiService.GetByIdAsync(id));
+        }
     }
 }
