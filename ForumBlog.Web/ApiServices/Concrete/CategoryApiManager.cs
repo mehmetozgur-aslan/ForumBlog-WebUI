@@ -28,5 +28,17 @@ namespace ForumBlog.Web.ApiServices.Concrete
             }
             return null;
         }
+
+        public async Task<List<CategoryWithBlogsCountModel>> GetAllWithBlogsCount()
+        {
+            var responseMessage = await _httpClient.GetAsync("GetWithBlogsCount");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<List<CategoryWithBlogsCountModel>>(await responseMessage.Content.ReadAsStringAsync());
+            }
+
+            return null;
+        }
     }
 }
