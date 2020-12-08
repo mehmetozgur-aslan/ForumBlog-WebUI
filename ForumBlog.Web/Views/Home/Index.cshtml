@@ -3,9 +3,9 @@
 
 @if (ViewBag.ActiveCategory != null)
 {
-    <div class="border border-dark p-3 mb-2">
-        Şu anda aktif kategori idsi ViewBag.ActiveCategory olan bloglar listelenmektedir. <a class="float-right" asp-action="Index">Filtreyi kaldır.</a>
-    </div>
+
+    @await Component.InvokeAsync("GetCategoryName", new { @categoryId = (int)ViewBag.ActiveCategory })
+
 }
 
 @foreach (var blog in Model)

@@ -10,5 +10,6 @@ namespace ForumBlog.Web.ApiServices.Interfaces
     {
         Task<List<CategoryListModel>> GetAllAsync();
         Task<List<CategoryWithBlogsCountModel>> GetAllWithBlogsCount();
+        Task<List<CategoryListModel>> GetByIdAsync(int id);
     }
 }
