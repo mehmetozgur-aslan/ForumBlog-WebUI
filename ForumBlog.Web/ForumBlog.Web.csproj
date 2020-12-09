@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\template\startbootstrap-simple-sidebar-gh-pages\css\" />
   </ItemGroup>
 
   <ItemGroup>
