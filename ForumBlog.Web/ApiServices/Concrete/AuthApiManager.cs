@@ -1,4 +1,5 @@
-﻿using ForumBlog.Web.Models;
+﻿using ForumBlog.Web.ApiServices.Interfaces;
+using ForumBlog.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -10,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace ForumBlog.Web.ApiServices.Concrete
 {
-    public class AuthManager
+    public class AuthApiManager : IAuthApiService
     {
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _accessor;
 
-        public AuthManager(HttpClient httpClient, IHttpContextAccessor accessor)
+        public AuthApiManager(HttpClient httpClient, IHttpContextAccessor accessor)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("http://localhost:54683/api/auth/");
