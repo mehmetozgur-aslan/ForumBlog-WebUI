@@ -20,7 +20,7 @@ namespace ForumBlog.Web.Filters
 
             if (string.IsNullOrWhiteSpace(token))
             {
-                context.Result = new RedirectToActionResult("SignIn", "Account", null);
+                context.Result = new RedirectToActionResult("SignIn", "Account", new { @area = "" });
             }
             else
             {
@@ -38,7 +38,7 @@ namespace ForumBlog.Web.Filters
                 }
                 else
                 {
-                    context.Result = new RedirectToActionResult("SignIn", "Account", null);
+                    context.Result = new RedirectToActionResult("SignIn", "Account", new {@area="" });
                 }
 
 

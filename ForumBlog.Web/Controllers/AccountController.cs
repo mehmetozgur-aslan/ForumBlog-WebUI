@@ -28,7 +28,7 @@ namespace ForumBlog.Web.Controllers
         {
             if (await _authApiService.SignIn(appUserLoginModel))
             {
-                return RedirectToAction("test");
+                return RedirectToAction("Index", "Home", new { @area = "Admin" });
             }
 
             return View();
