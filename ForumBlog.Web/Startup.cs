@@ -18,6 +18,8 @@ namespace ForumBlog.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor(); // controller dýþýndan context'e eriþebilmek için
+            services.AddSession();
             services.AddHttpClient<IBlogApiService, BlogApiManager>();
             services.AddHttpClient<ICategoryApiService, CategoryApiManager>();
             services.AddHttpClient<IImageApiService, ImageApiManager>();
@@ -34,6 +36,7 @@ namespace ForumBlog.Web
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
