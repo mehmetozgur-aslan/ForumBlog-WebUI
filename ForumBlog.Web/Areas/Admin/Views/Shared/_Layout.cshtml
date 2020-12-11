@@ -15,7 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/simple-sidebar.css" rel="stylesheet">
-
+    @RenderSection("Css", false)
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                   
+
                 </div>
             </nav>
 
@@ -63,10 +63,13 @@
     <script src="/css/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Menu Toggle Script -->
-    <script>$("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });</script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });</script>
+
+    @RenderSection("JavaScript", false)
 
 </body>
 
