@@ -65,5 +65,11 @@ namespace ForumBlog.Web.Areas.Admin.Controllers
             return View(blogUpdateModel);
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+           await _blogApiService.DeleteAsync(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }
