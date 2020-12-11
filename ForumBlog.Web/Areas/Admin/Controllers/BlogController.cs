@@ -1,5 +1,6 @@
 ﻿using ForumBlog.Web.ApiServices.Interfaces;
 using ForumBlog.Web.Filters;
+using ForumBlog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,22 @@ namespace ForumBlog.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _blogApiService.GetAllAsync());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(BlogAddModel blogAddModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _blogApiService.AddAsync(blogAddModel);
+                return RedirectToAction("Index");
+            }
+            return View(blogAddModel);
         }
     }
 }
