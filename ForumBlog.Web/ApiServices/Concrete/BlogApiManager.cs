@@ -86,5 +86,42 @@ namespace ForumBlog.Web.ApiServices.Concrete
 
             await _httpClient.PostAsync("", formData);
         }
+
+
+        public async Task UpdateAsync(BlogUpdateModel model)
+        {
+            MultipartFormDataContent formData = new MultipartFormDataContent();
+
+            if (model.Image != null)
+            {
+                var bytes = await System.IO.File.ReadAllBytesAsync(model.Image.FileName);
+
+                ByteArrayContent byteContent = new ByteArrayContent(bytes);
+
+                byteContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(model.Image.ContentType);
+
+                formData.Add(byteContent, nameof(BlogUpdateModel.Image), model.Image.FileName);
+            }
+
+            var activeUser = _httpContextAccessor.HttpContext.Session.GetObject<AppUserViewModel>("activeUser");
+
+            model.AppUserId = activeUser.Id;
+
+            formData.Add(new StringContent(model.Id.ToString()), nameof(BlogUpdateModel.Id));
+
+            formData.Add(new StringContent(model.AppUserId.ToString()), nameof(BlogUpdateModel.AppUserId));
+
+            formData.Add(new StringContent(model.ShortDescription.ToString()), nameof(BlogUpdateModel.ShortDescription));
+
+            formData.Add(new StringContent(model.Description.ToString()), nameof(BlogUpdateModel.Description));
+
+            formData.Add(new StringContent(model.Title.ToString()), nameof(BlogUpdateModel.Title));
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("token"));
+
+            await _httpClient.PutAsync($"{model.Id}", formData);
+        }
+
+
     }
 }

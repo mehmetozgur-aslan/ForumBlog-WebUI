@@ -12,5 +12,6 @@ namespace ForumBlog.Web.ApiServices.Interfaces
         Task<BlogListModel> GetByIdAsync(int id);
         Task<List<BlogListModel>> GetAllByCategoryIdAsync(int id);
         Task AddAsync(BlogAddModel model);
+        Task UpdateAsync(BlogUpdateModel model);
     }
 }

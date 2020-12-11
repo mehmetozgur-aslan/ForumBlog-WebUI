@@ -40,5 +40,30 @@ namespace ForumBlog.Web.Areas.Admin.Controllers
             }
             return View(blogAddModel);
         }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var blogList = await _blogApiService.GetByIdAsync(id);
+
+            return View(new BlogUpdateModel()
+            {
+                Id = blogList.Id,
+                Description = blogList.Description,
+                ShortDescription = blogList.ShortDescription,
+                Title = blogList.Title
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(BlogUpdateModel blogUpdateModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _blogApiService.UpdateAsync(blogUpdateModel);
+                return RedirectToAction("Index");
+            }
+            return View(blogUpdateModel);
+        }
+
     }
 }
