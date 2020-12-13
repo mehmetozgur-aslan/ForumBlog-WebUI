@@ -26,12 +26,15 @@ namespace ForumBlog.Web.Controllers
 
         public async Task<IActionResult> SignIn(AppUserLoginModel appUserLoginModel)
         {
-            if (await _authApiService.SignIn(appUserLoginModel))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home", new { @area = "Admin" });
-            }
+                if (await _authApiService.SignIn(appUserLoginModel))
+                {
+                    return RedirectToAction("Index", "Home", new { @area = "Admin" });
+                }
+            }           
 
-            return View();
+            return View(appUserLoginModel);
         }
     }
 }
