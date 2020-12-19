@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ForumBlog.Web.ApiServices.Concrete
@@ -124,9 +125,29 @@ namespace ForumBlog.Web.ApiServices.Concrete
 
         public async Task DeleteAsync(int id)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",_httpContextAccessor.HttpContext.Session.GetString("token"));
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _httpContextAccessor.HttpContext.Session.GetString("token"));
 
             await _httpClient.DeleteAsync($"{id}");
+        }
+
+        public async Task<List<CommentListModel>> GetCommentAsync(int blogId, int? parentCommentId)
+        {
+            var responseMessage = await _httpClient.GetAsync($"{blogId}/GetComments?parentCommentId={parentCommentId}");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<List<CommentListModel>>(await responseMessage.Content.ReadAsStringAsync());
+            }
+
+            return null;
+        }
+
+        public async Task AddToComment(CommentAddModel commentAddModel)
+        {
+            var jsonData = JsonConvert.SerializeObject(commentAddModel);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            await _httpClient.PostAsync("AddComment",content);
         }
     }
 }

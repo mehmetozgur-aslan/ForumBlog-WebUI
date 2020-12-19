@@ -1,4 +1,5 @@
 ﻿using ForumBlog.Web.ApiServices.Interfaces;
+using ForumBlog.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,14 @@ namespace ForumBlog.Web.Controllers
 
         public async Task<IActionResult> BlogDetail(int id)
         {
+            ViewBag.Comments = await _blogApiService.GetCommentAsync(id, null);
             return View(await _blogApiService.GetByIdAsync(id));
+        }
+
+        public async Task<IActionResult> AddToComment(CommentAddModel commentAddModel)
+        {
+            await _blogApiService.AddToComment(commentAddModel);
+            return RedirectToAction("BlogDetail", new { id = commentAddModel.BlogId });
         }
     }
 }

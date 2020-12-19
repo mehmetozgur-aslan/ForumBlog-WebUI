@@ -14,5 +14,7 @@ namespace ForumBlog.Web.ApiServices.Interfaces
         Task AddAsync(BlogAddModel model);
         Task UpdateAsync(BlogUpdateModel model);
         Task DeleteAsync(int id);
+        Task<List<CommentListModel>> GetCommentAsync(int blogId, int? parentCommentId);
+        Task AddToComment(CommentAddModel commentAddModel);
     }
 }
