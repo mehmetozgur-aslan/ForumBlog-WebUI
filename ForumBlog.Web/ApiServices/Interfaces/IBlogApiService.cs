@@ -16,5 +16,10 @@ namespace ForumBlog.Web.ApiServices.Interfaces
         Task DeleteAsync(int id);
         Task<List<CommentListModel>> GetCommentAsync(int blogId, int? parentCommentId);
         Task AddToComment(CommentAddModel commentAddModel);
+        Task<List<CategoryListModel>> GetCategories(int blogId);
+        Task<List<BlogListModel>> GetLastFiveAsync();
+        Task<List<BlogListModel>> SearchAsync(string s);
+        Task AddToCategoryAsync(CategoryBlogModel model);
+        Task RemoveFromCategoryAsync(CategoryBlogModel model);
     }
 }
