@@ -6,9 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<a class="btn btn-info btn-sm">Yeni Kategori Ekle</a>
-<table class="table table-bordered table-hover">
+<a class="btn btn-outline-info btn-sm my-2">Yeni Kategori Ekle</a>
+<table class="table table-bordered table-hover table-sm">
     <tbody>
+        <tr>
+            <th>Kategori Adı</th>
+            <th>İşlemler</th>
+
+        </tr>
         @foreach (var category in Model)
         {
             <tr>

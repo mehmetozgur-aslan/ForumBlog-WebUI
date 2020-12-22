@@ -30,7 +30,7 @@ namespace ForumBlog.Web.Controllers
             {
                 if (await _authApiService.SignIn(appUserLoginModel))
                 {
-                    return RedirectToAction("Index", "Home", new { @area = "Admin" });
+                    return RedirectToAction("Index", "Blog", new { @area = "Admin" });
                 }
             }           
 
