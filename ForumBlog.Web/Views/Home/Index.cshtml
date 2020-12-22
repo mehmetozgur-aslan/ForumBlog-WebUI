@@ -8,6 +8,11 @@
 
 }
 
+@if (!string.IsNullOrWhiteSpace(ViewBag.SeachString))
+{
+    @await Component.InvokeAsync("Search",new { s=ViewBag.SearchString});
+}
+
 @foreach (var blog in Model)
 {
     <div class="card mb-4">

@@ -61,15 +61,19 @@
 
                 <!-- Search Widget -->
                 <div class="card my-4">
-                    <h5 class="card-header">Search</h5>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
+
+                    <form asp-action="Index" asp-controller="Home" method="get">
+
+                        <h5 class="card-header">Ara</h5>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="s" placeholder="Ara...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="submit">Ara</button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Categories Widget -->
@@ -103,7 +107,7 @@
     <script src="/css/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-    @RenderSection("JavaScript",false)
+    @RenderSection("JavaScript", false)
 
 </body>
 
