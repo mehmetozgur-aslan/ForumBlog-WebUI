@@ -1,0 +1,16 @@
+﻿@model List<BlogListModel>
+
+<div class="card my-4">
+    <h5 class="card-header">Son yazılanlar</h5>
+    <div class="card-body">
+
+        @foreach (var blog in Model)
+        {
+<p>
+    <a asp-action="BlogDetail" asp-controller="Home" asp-route-id="@blog.Id">@blog.Title</a>
+</p>
+
+                <hr />}
+
+    </div>
+</div>
